@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>臺北市最新災害災情資料網</title>
+    <meta property="og:title" content="臺北市最新災害災情資料網" />
+    <meta property="og:description" content="臺北市最新災害災情資料網，在颱風期間提供即時的地區災害狀況，讓你避開危險、了解災情。" />
+    <meta property="og:image" content="images/headerPic.jpg" />
+    <meta property="og:site_name" content="臺北市最新災害災情資料網" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:url" content="https://enginelin.github.io/bootstrapPracticing01/" />
+    <link rel="shortcut icon" href="images/icon.png">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+    <link rel="stylesheet" href="all.css" />
+</head>
+
+<body>
+    <div id="app">
+        <div class="navbar navbar-expand-lg navbar-light fixed-top"><a href="#" class="navbar-brand text-light">災情資料網</a>
+            <button type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+            <div id="navbarNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item active"><a href="#" class="nav-link text-light">台北市</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="header">
+            <h1 class="text-center">臺北市最新災害災情資料網</h1>
+            <h2 class="text-center text-danger mb-3">了解時況、安心到家</h2>
+            <div class="row">
+                <div class="col-8 ml-auto mr-auto dropdown">
+                    <button id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-Secondary dropdown-toggle">選擇行政區</button>
+                    <div aria-labelledby="dropdownMenuButton" class="dropdown-menu bg-Secondary"><a href="#stopPoint" v-for="zone in selectorZone" @click="zoneDataInput(zone)" class="dropdown-item">{{ zone }}</a></div>
+                </div>
+                <div class='alert'>更新頻率: 5分鐘一次 ；資料來源:臺北市政府 消防局EOC 開放資料專區</div>
+            </div>
+        </div>
+        <div id="stopPoint"></div>
+        <div id="map"></div>
+        <div v-if="dataToggle" class="container">
+            <div class="row">
+                <div data-offset="3" class="alter-number col-12 mt-3 mb-3 ml-auto mr-auto bg-info rounded-right col-sm-8">防災災情及相關諮詢電話 : 87863119 分機 8900-8907</div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <table class="table table-hover">
+                        <thead class="thead-default">
+                            <tr>
+                                <th>發生時間</th>
+                                <th>區域</th>
+                                <th>詳細位置</th>
+                                <th>敘述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in filer">
+                                <td>{{ item.CaseTime }}</td>
+                                <td>{{ item.CaseLocationDistrict }}</td>
+                                <td>{{ item.CaseLocationDescription }}</td>
+                                <td>{{ item.CaseDescription }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer text-center mt-1">
+        <h3>Copyright © Engine Lin All rights reserved</h3>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0dIUHiUnWRKVP41FOfyRaNcwLNhC1pkg"></script>
+    <script src="vendors.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="all.js">
+    </script>
+</body>
+
+</html>
